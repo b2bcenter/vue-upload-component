@@ -1,10 +1,10 @@
 /*!
- Name: vue-upload-component 
-Component URI: https://github.com/lian-yue/vue-upload-component#readme 
-Version: 3.1.0 
-Author: LianYue 
-License: Apache-2.0 
-Description: Vue.js file upload component, Multi-file upload, Upload directory, Drag upload, Drag the directory, Upload multiple files at the same time, html4 (IE 9), `PUT` method, Customize the filter 
+ Name: vue-upload-component
+Component URI: https://github.com/lian-yue/vue-upload-component#readme
+Version: 3.1.1
+Author: LianYue
+License: Apache-2.0
+Description: Vue.js file upload component, Multi-file upload, Upload directory, Drag upload, Drag the directory, Upload multiple files at the same time, html4 (IE 9), `PUT` method, Customize the filter
  */
 (function (global, factory) {
   typeof exports === 'object' && typeof module !== 'undefined' ? module.exports = factory(require('vue')) :
@@ -12,7 +12,7 @@ Description: Vue.js file upload component, Multi-file upload, Upload directory, 
   (global = typeof globalThis !== 'undefined' ? globalThis : global || self, global.VueUploadComponent = factory(global.Vue));
 })(this, (function (vue) { 'use strict';
 
-  function _toConsumableArray(arr) { return _arrayWithoutHoles(arr) || _iterableToArray(arr) || _unsupportedIterableToArray(arr) || _nonIterableSpread(); }
+  function _toConsumableArray(arr) { return _arrayWithoutH最大数量限制oles(arr) || _iterableToArray(arr) || _unsupportedIterableToArray(arr) || _nonIterableSpread(); }
 
   function _nonIterableSpread() { throw new TypeError("Invalid attempt to spread non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
 
@@ -777,7 +777,7 @@ Description: Vue.js file upload component, Multi-file upload, Upload directory, 
         }
       }
     },
-    emits: ['update:modelValue', 'input-filter', 'input-file'],
+    emits: ['update:modelValue', 'input-filter', 'input-file', 'max-files'],
     data: function data() {
       return {
         files: this.modelValue,
@@ -1089,6 +1089,7 @@ Description: Vue.js file upload component, Multi-file upload, Upload directory, 
 
 
           if (this.iMaximum > 1 && addFiles.length + this.files.length >= this.iMaximum) {
+            this.$emit('max-files', file);
             break;
           }
 
@@ -1235,7 +1236,7 @@ Description: Vue.js file upload component, Multi-file upload, Upload directory, 
 
         return Promise.resolve([]);
       },
-      // 获得 entrys    
+      // 获得 entrys
       getFileSystemEntry: function getFileSystemEntry(entry) {
         var _this10 = this;
 

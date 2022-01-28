@@ -1,7 +1,7 @@
 <template>
   <span :class="className">
     <slot></slot>
-    <label :for="forId"></label>    
+    <label :for="forId"></label>
     <input
       v-if="!reload"
       ref="input"
@@ -144,7 +144,7 @@ export interface VueUploadItem {
 
     // xhr 信息
     file?: Blob; // 只读
-    
+
     xhr?: XMLHttpRequest; // 只读
 
     // el 信息  仅有 html4 使用
@@ -267,6 +267,7 @@ export default defineComponent({
     'update:modelValue',
     'input-filter',
     'input-file',
+    'max-files',
   ],
   data(): Data {
 
@@ -553,6 +554,7 @@ export default defineComponent({
         }
         // 最大数量限制
         if (this.iMaximum > 1 && (addFiles.length + this.files.length) >= this.iMaximum) {
+          this.$emit('max-files', file);
           break
         }
         addFiles.push(file)
@@ -597,7 +599,7 @@ export default defineComponent({
       const files: Array<VueUploadItem | File> = []
       const maximumValue = this.iMaximum
 
-      
+
       // @ts-ignore
       const entrys: any = el.webkitEntries || el.entries || undefined
       if (entrys?.length) {
@@ -605,7 +607,7 @@ export default defineComponent({
           return this.add(files) as VueUploadItem[]
         })
       }
-      
+
       if (el.files) {
         for (let i = 0; i < el.files.length; i++) {
           const file: File = el.files[i]
@@ -677,13 +679,13 @@ export default defineComponent({
       return Promise.resolve([])
     },
 
-     
-    // 获得 entrys    
+
+    // 获得 entrys
     getFileSystemEntry(entry: Array<File | FileSystemEntry> | File | FileSystemEntry, path = ''): Promise<VueUploadItem[]> {
     // getFileSystemEntry(entry: any, path = ''): Promise<VueUploadItem[]> {
       return new Promise((resolve) => {
         const maximumValue = this.iMaximum
-        
+
         if (!entry) {
           resolve([])
           return
@@ -703,7 +705,7 @@ export default defineComponent({
             })
           }
           forEach(0)
-          return 
+          return
         }
 
         if (entry instanceof Blob) {
@@ -720,8 +722,8 @@ export default defineComponent({
           return
         }
 
-        
-        
+
+
         if (entry.isFile) {
           let fileEntry = entry as FileSystemFileEntry
           fileEntry.file(function (file: File) {
@@ -737,7 +739,7 @@ export default defineComponent({
           })
           return
         }
-        
+
         if (entry.isDirectory && this.dropDirectory) {
           let directoryEntry = entry as FileSystemDirectoryEntry
           const uploadFiles: VueUploadItem[] = []
@@ -1037,7 +1039,7 @@ export default defineComponent({
         }
         speedTime = speedTime2
 
-        
+
         file = this.update(file, {
           progress: (e.loaded / e.total * 100).toFixed(2),
           speed: e.loaded - speedLoaded,
@@ -1155,7 +1157,7 @@ export default defineComponent({
           // 更新
           // @ts-ignore
           file = this.update(file, data)
-          
+
           if (!file) {
             return reject(new Error('abort'))
           }
@@ -1177,7 +1179,7 @@ export default defineComponent({
         xhr.onerror = fn
         xhr.onabort = fn
         xhr.ontimeout = fn
-        
+
 
         // 超时
         if (file.timeout) {

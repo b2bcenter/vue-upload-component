@@ -138,7 +138,7 @@ declare const _default: {
             onDocumentDrop(): void;
             onDrop(e: DragEvent): void;
             inputOnChange(e: Event): Promise<any>;
-        }, import("vue").ComponentOptionsMixin, import("vue").ComponentOptionsMixin, ("update:modelValue" | "input-filter" | "input-file")[], "update:modelValue" | "input-filter" | "input-file", import("vue").VNodeProps & import("vue").AllowedComponentProps & import("vue").ComponentCustomProps, Readonly<import("vue").ExtractPropTypes<{
+        }, import("vue").ComponentOptionsMixin, import("vue").ComponentOptionsMixin, ("update:modelValue" | "input-filter" | "input-file" | "max-files")[], "update:modelValue" | "input-filter" | "input-file" | "max-files", import("vue").VNodeProps & import("vue").AllowedComponentProps & import("vue").ComponentCustomProps, Readonly<import("vue").ExtractPropTypes<{
             inputId: {
                 type: StringConstructor;
             };

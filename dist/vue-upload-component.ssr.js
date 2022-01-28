@@ -1,7 +1,7 @@
 /*!
  Name: vue-upload-component 
 Component URI: https://github.com/lian-yue/vue-upload-component#readme 
-Version: 3.1.0 
+Version: 3.1.1 
 Author: LianYue 
 License: Apache-2.0 
 Description: Vue.js file upload component, Multi-file upload, Upload directory, Drag upload, Drag the directory, Upload multiple files at the same time, html4 (IE 9), `PUT` method, Customize the filter 
@@ -596,6 +596,7 @@ Description: Vue.js file upload component, Multi-file upload, Upload directory, 
           'update:modelValue',
           'input-filter',
           'input-file',
+          'max-files',
       ],
       data() {
           return {
@@ -884,6 +885,7 @@ Description: Vue.js file upload component, Multi-file upload, Upload directory, 
                   }
                   // 最大数量限制
                   if (this.iMaximum > 1 && (addFiles.length + this.files.length) >= this.iMaximum) {
+                      this.$emit('max-files', file);
                       break;
                   }
                   addFiles.push(file);
@@ -1006,7 +1008,7 @@ Description: Vue.js file upload component, Multi-file upload, Upload directory, 
               }
               return Promise.resolve([]);
           },
-          // 获得 entrys    
+          // 获得 entrys
           getFileSystemEntry(entry, path = '') {
               // getFileSystemEntry(entry: any, path = ''): Promise<VueUploadItem[]> {
               return new Promise((resolve) => {

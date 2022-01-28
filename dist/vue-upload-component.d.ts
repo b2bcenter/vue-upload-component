@@ -209,7 +209,7 @@ declare const _default: import("vue").DefineComponent<{
     onDocumentDrop(): void;
     onDrop(e: DragEvent): void;
     inputOnChange(e: Event): Promise<any>;
-}, import("vue").ComponentOptionsMixin, import("vue").ComponentOptionsMixin, ("update:modelValue" | "input-filter" | "input-file")[], "update:modelValue" | "input-filter" | "input-file", import("vue").VNodeProps & import("vue").AllowedComponentProps & import("vue").ComponentCustomProps, Readonly<import("vue").ExtractPropTypes<{
+}, import("vue").ComponentOptionsMixin, import("vue").ComponentOptionsMixin, ("update:modelValue" | "input-filter" | "input-file" | "max-files")[], "update:modelValue" | "input-filter" | "input-file" | "max-files", import("vue").VNodeProps & import("vue").AllowedComponentProps & import("vue").ComponentCustomProps, Readonly<import("vue").ExtractPropTypes<{
     inputId: {
         type: StringConstructor;
     };
@@ -310,6 +310,7 @@ declare const _default: import("vue").DefineComponent<{
     "onUpdate:modelValue"?: ((...args: any[]) => any) | undefined;
     "onInput-filter"?: ((...args: any[]) => any) | undefined;
     "onInput-file"?: ((...args: any[]) => any) | undefined;
+    "onMax-files"?: ((...args: any[]) => any) | undefined;
 }, {
     name: string;
     size: number;
