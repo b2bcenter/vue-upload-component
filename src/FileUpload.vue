@@ -442,6 +442,7 @@ export default {
 
         // 最大数量限制
         if (this.maximum > 1 && (addFiles.length + this.files.length) >= this.maximum) {
+          this.$emit('max-files', file);
           break
         }
 

@@ -1,7 +1,7 @@
 /*!
  * Name: vue-upload-component
- * Version: 2.8.21
- * Author: Marco Lang
+ * Version: 2.8.22
+ * Author: LianYue
  */
 (function (global, factory) {
   typeof exports === 'object' && typeof module !== 'undefined' ? module.exports = factory() :
@@ -1135,6 +1135,7 @@
 
           // 最大数量限制
           if (this.maximum > 1 && addFiles.length + this.files.length >= this.maximum) {
+            this.$emit('max-files', file);
             break;
           }
 
